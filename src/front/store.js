@@ -22,6 +22,13 @@ export default function storeReducer(store, action = {}) {
           todo.id === id ? { ...todo, background: color } : todo
         ),
       };
+
+    case "save_new_user":
+      return {
+        ...store,
+        dataUser: action.payload
+      };
+      
     default:
       throw Error("Unknown action.");
   }
