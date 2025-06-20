@@ -6,7 +6,7 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import bcrypt
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -86,9 +86,18 @@ def login():
     if not bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
         return jsonify({"error": "Wrong Password"}), 401
 
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=str(user.id))
 
     return jsonify({
         "message": "Login successful!",
         "access_token": access_token
+    }), 200
+
+
+@api.route('/private', methods=['GET'])
+@jwt_required()
+def private_view():
+    current_user_id = get_jwt_identity()
+    return jsonify({
+        "message": f"Welcome to the private view, user ID: {current_user_id}"
     }), 200

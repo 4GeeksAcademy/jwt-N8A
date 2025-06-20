@@ -19,7 +19,9 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../dist/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
-app.config["JWT_SECRET_KEY"] = "change-later-key" #change later!!!
+# set using python -c "import secrets; print(secrets.token_urlsafe(32))"
+app.config["JWT_SECRET_KEY"] = "SFTyHHsq2Z76cePU0qoV-scUxz8O-Hfzvh8XIoY7gL8"
+
 jwt = JWTManager(app)
 
 # database condiguration
@@ -60,6 +62,8 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 # any other endpoint will try to serve it like a static file
+
+
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
     if not os.path.isfile(os.path.join(static_file_dir, path)):
