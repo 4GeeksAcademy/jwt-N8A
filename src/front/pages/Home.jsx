@@ -34,10 +34,10 @@ export const Home = () => {
 	}, [])
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center mt-5 alert alert-info">
 			<h1 className="display-4">Hello there!!</h1>
 			<p className="lead">
-				<img src={rigoImageUrl} className="img-fluid rounded-circle mb-3" alt="Rigo Baby" />
+				<img src="https://cdn.pixabay.com/photo/2014/04/02/10/12/checkbox-303113_1280.png" className="img-fluid rounded-circle mb-3" width={300} alt="verifCheck" />
 			</p>
 			<div className="alert alert-info">
 				{/* {store.message ? (
@@ -47,7 +47,7 @@ export const Home = () => {
 						Loading message from the backend (make sure your python 🐍 backend is running)...
 					</span>
 				)} */}
-				<Link to="/login"><button className="btn bsb-btn-xl btn-primary" type="submit"> Login </button></Link> <hr />
+				<Link to="/login"><button className="btn bsb-btn-xl btn-primary" type="submit"> Login </button></Link> <br />
 				<span>New here?</span><br /><Link to="/signup"><button className="btn bsb-btn-xl btn-primary" type="submit"> Sign Up </button></Link>
 
 				{/* <section className="bg-light p-3 p-md-4 p-xl-5">
